@@ -7,11 +7,16 @@ built for **e107 core v2.4** on the [Tabler 1.4.0](https://tabler.io) UI kit
 
 ## What's in this documentation
 
-* **[How this theme was developed](development/README.md)** — a running
-  checklist of every development area with its current progress, and one
-  page per area recording what was done, which core mechanisms are involved
-  and which traps had to be solved (the forgot-password / members-only
-  rendering path being the most famous one).
+* **[Development](development/README.md)** — the running checklist with
+  per-area progress.
+* **[Theme skeleton](skeleton/README.md)** — the base files: theme.xml,
+  theme.html, theme.php, shortcodes, config, assets.
+* **[Theme layouts](layouts/README.md)** — the HTML layout system, one page
+  per layout, and the header/footer partials.
+* **[Standalone pages](standalone/auth-pages.md)** — render paths that
+  bypass the layout system: auth pages and the sitedown page.
+* **[Plugins](plugins/signin.md)** — theme integration of core plugins:
+  signin, news.
 * **[Guides](guides/fixing-news-action-icons.md)** — standalone how-to
   articles distilled from the development notes, written so they apply to
   any custom e107 theme, not only to Aragorn.

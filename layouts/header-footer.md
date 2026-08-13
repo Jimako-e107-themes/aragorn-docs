@@ -13,7 +13,7 @@ footers/footer_default.html
 
 They are loaded by the `{HEADER}` / `{FOOTER}` theme shortcodes, which core
 merges into the layout at the `{---HEADER---}` / `{---FOOTER---}` markers
-of [theme.html](theme-html.md) **during** `e_theme::loadLayout()` — before
+of [theme.html](../skeleton/theme-html.md) **during** `e_theme::loadLayout()` — before
 the layout is parsed and before the Menu Manager scans it.
 
 This pattern is **not an e107 standard** (core only provides the markers
@@ -34,7 +34,7 @@ is documented as a standalone guide:
 
 * **Header** (`header_default.html`) — Tabler horizontal navbar with the
   site brand, `{NAVIGATION}` menu and the signin area
-  (see [Signin](signin.md) for its own status).
+  (see [Signin](../plugins/signin.md) for its own status).
 * **Footer** (`footer_default.html`) — two-tier Tabler footer:
   `{MENUAREA=101}` (verified live in the Menu Manager, including the *Add*
   dropdown), resources columns, `{NAVIGATION=alt}` / `{NAVIGATION=alt4}`,
@@ -52,4 +52,4 @@ is documented as a standalone guide:
 
 * Footer content finalization — decide which columns stay hardcoded and
   which move to menu areas; final spacing pass.
-* Header polish follows the [Signin](signin.md) and navigation work.
+* Header polish follows the [Signin](../plugins/signin.md) and navigation work.

@@ -76,5 +76,5 @@ processing. No auth logic is duplicated.
 Theme shortcodes do **not** work in the fpw / membersonly template
 `header`/`footer` keys — `simpleParse()` deletes plain `{WORD}` codes
 there. Details in
-[Auth pages](../development/auth-pages.md).
+[Auth pages](../standalone/auth-pages.md).
 {% endhint %}

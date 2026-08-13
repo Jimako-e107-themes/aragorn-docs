@@ -137,7 +137,7 @@ Read the constant with `defset('THEME_LAYOUT')` **inside the shortcode
 method**. The shortcode batch is a singleton created on the first
 `getScBatch('theme')` call anywhere; caching the constant in the
 constructor works only sometimes. Details in
-[Theme layouts](../development/theme-layouts.md).
+[Theme layouts](../layouts/README.md).
 
 ### One shortcode per line
 

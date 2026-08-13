@@ -14,7 +14,7 @@ layouts/<name>_layout.html
 
 The file contains the layout's own chrome and `{---}` where the page
 content renders. Core inserts the file at the `{---LAYOUT---}` marker of
-[theme.html](theme-html.md), **inside** the shared
+[theme.html](../skeleton/theme-html.md), **inside** the shared
 `<div class="page {PAGE_CLASS}">` wrapper — layout files therefore start at
 `.page-wrapper` (or their `aside`), never with `.page` itself.
 
@@ -31,15 +31,17 @@ single line in layout files and partials.
 
 ## Current layouts
 
-| Layout | custompages | Structure |
+| Layout | custompages | Purpose |
 |---|---|---|
-| `full` | — | `page-wrapper` → `page-body` → `{SETSTYLE=card}` `{---}`; small transparent footer |
-| `auth` | `login fpw signup` | `container-tight` with brand block + `{---}`; `page-center` via `{PAGE_CLASS}`, header & footer partials suppressed, card from `tablestyle()` auth modes |
-| `page` *(default)* | `page faq` | Tabler page header filled by magic shortcodes + `page-body` with `{SETSTYLE=default}` `{---}` |
-| `sidebar` | `news` | same magic page header; `row g-4` with content `col-md-9` (`{SETSTYLE=default}` `{---}`) and a **right** `aside.col-md-3` with `sticky-top` `{SETSTYLE=card}` `{MENUAREA=100}` (Tabler job-listing pattern) |
-| `home` | `FRONTPAGE` | full-width marketing front page — see [Home layout](home-layout.md) |
-| `memberdesk` | — | **left** `aside.navbar-vertical` (dark) with `{SETSTYLE=card}` `{MENUAREA=100}` + `page-wrapper`; no header partial, reduced `footer_small.html` |
-| `raw` | — | bare `{---}` |
+| [`full`](full.md) | — | full page, horizontal header, boxed width |
+| [`auth`](auth.md) | `login fpw signup` | centered auth pages |
+| [`page`](page.md) *(default)* | `page faq` | boxed page with the magic page header |
+| [`sidebar`](sidebar.md) | `news` | magic page header + right menu column |
+| [`home`](home.md) | `FRONTPAGE` | full-width marketing front page |
+| [`memberdesk`](memberdesk.md) | — | member area, left vertical sidebar |
+| [`raw`](raw.md) | — | bare output |
+
+Each layout has its own page with the exact structure and rules.
 
 ## Magic shortcodes — `{---CAPTION---}` and `{---BREADCRUMB---}`
 
@@ -65,22 +67,17 @@ Core also offers theme hooks for customizing the output: if
 `sc_breadcrumb($bread)`, their return value replaces the marker instead of
 the default rendering.
 
-## `{SETSTYLE}` map
+## `{SETSTYLE}` styles
 
-| Style | Used by | `tablestyle()` output |
-|---|---|---|
-| `card` | `full`, `sidebar` aside, `memberdesk` | explicit Tabler card, caption in `.card-header` |
-| `default` | `page`, `sidebar` content | main-render designation for the magic page header; card without caption (caption lives in the page header) |
-| auth modes (`login_page`, `fpw`, `signup`) | auth pages via core | `card card-md`, caption centered inside the body |
-| `raw` / `none` | — | passthrough |
-
-A `tablestyle()` refinement pass is planned as its own task; the mapping
-above may evolve with it.
+Which style each layout uses and what `tablestyle()` renders for it is
+documented on [theme.php](../skeleton/theme-php.md). Rule of thumb:
+`card` for plain content layouts, `default` only for the layouts with the
+magic page header.
 
 ## Per-layout behaviour without per-layout files
 
 * **Body classes** — `{BODY_CLASS}` on the body tag
-  (see [theme.html](theme-html.md)).
+  (see [theme.html](../skeleton/theme-html.md)).
 * **Page wrapper classes** — `{PAGE_CLASS}` on the shared `.page` wrapper
   (`auth` → `page-center`).
 * **Header/footer variants** — the `{HEADER}` / `{FOOTER}` shortcode

@@ -17,7 +17,7 @@ dashboard package (`dist/`):
 Deliberately **not** copied: demo libraries (apexcharts, jsvectormap) and the
 extra bundles (flags, payments, socials, vendors). Tabler icons are inline
 SVG, so no icon-font vendor is shipped; legacy core output uses the core
-FontAwesome 6 library instead (see [Theme skeleton](theme-skeleton.md)).
+FontAwesome 6 library instead (see [Theme skeleton](README.md)).
 
 ## CSS load order
 
@@ -47,7 +47,7 @@ img.img-responsive {
 
 ## Social icon SVG sizing
 
-The `aragorn` variant of `{XURL_ICONS}` (see [Sitedown page](sitedown.md))
+The `aragorn` variant of `{XURL_ICONS}` (see [Sitedown page](../standalone/sitedown.md))
 renders core inline SVGs inside Tabler brand buttons. The SVGs carry
 hard-coded IcoMoon dimensions, normalized in `style.css`:
 

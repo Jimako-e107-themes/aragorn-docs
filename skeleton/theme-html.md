@@ -27,7 +27,7 @@ Core splits `theme.html` at `{---LAYOUT---}` into the internal `_header_`
 and `_footer_` parts. Everything above the marker is rendered before the
 current layout, everything below after it. The marker itself is replaced by
 the content of `layouts/<name>_layout.html` (see
-[Theme layouts](theme-layouts.md)).
+[Theme layouts](../layouts/README.md)).
 
 ## The body tag
 
@@ -42,7 +42,7 @@ the content of `layouts/<name>_layout.html` (see
 `sc_body_class()` must read `THEME_LAYOUT` via `defset()` **inside the
 method**, never cache it in the constructor — the shortcode batch is a
 singleton that can be instantiated before the constant exists. The full
-explanation is in [Theme layouts](theme-layouts.md).
+explanation is in [Theme layouts](../layouts/README.md).
 {% endhint %}
 
 * **`{BODY_ONLOAD}`** — core placeholder for legacy onload attributes.
@@ -63,7 +63,7 @@ returns nothing, the page loses a modifier, not its skeleton.
 * **`{---HEADER---}` / `{---FOOTER---}`** — replaced by core with the
   parsed output of the `{HEADER}` / `{FOOTER}` theme shortcodes, which load
   the HTML partials from `headers/` and `footers/`. Documented on
-  [Header & footer partials](header-footer.md) and in detail in
+  [Header & footer partials](../layouts/header-footer.md) and in detail in
   [the guide](../guides/header-footer-partials.md).
 * **`{---MODAL---}`** — core placeholder for the modal container markup.
 
@@ -77,7 +77,7 @@ Two core render paths bypass the whole HTML layout system — expect neither
    header/footer and prints `e_IFRAME_HEADER` / `e_IFRAME_FOOTER` from the
    page templates instead; with an HTML-layout theme the page then has no
    `<body>` tag at all. How the auth pages deal with this is documented on
-   [Auth pages](auth-pages.md).
+   [Auth pages](../standalone/auth-pages.md).
 2. **Maintenance mode** — guests are redirected to `sitedown.php`, whose
    template supplies its **own complete HTML document** including all CSS
-   links. See [Sitedown page](sitedown.md).
+   links. See [Sitedown page](../standalone/sitedown.md).

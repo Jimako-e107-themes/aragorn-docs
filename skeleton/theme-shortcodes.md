@@ -8,7 +8,7 @@ by the full parser.
 Theme shortcodes do **not** work in the fpw / membersonly template
 `header` / `footer` keys — `simpleParse()` deletes every plain `{WORD}`
 code there before the full parser runs. See
-[Auth pages](auth-pages.md) for the workaround (PHP constants +
+[Auth pages](../standalone/auth-pages.md) for the workaround (PHP constants +
 `e107::getThemePref()`).
 {% endhint %}
 

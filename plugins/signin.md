@@ -39,7 +39,7 @@ Bootstrap 5 navbar-dropdown markup, working in the Tabler header:
 `data-toggle` kept for BC), `d-grid` button stack, `{USER_AVATAR}` with
 circle crop in the member state. FontAwesome icons render correctly thanks
 to the registered `fontawesome` library (see
-[Theme skeleton](theme-skeleton.md)).
+[Theme skeleton](../skeleton/README.md)).
 
 ## Remaining polish (the missing 30%)
 

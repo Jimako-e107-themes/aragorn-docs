@@ -5,17 +5,38 @@
 ## Development
 
 * [How this theme was developed](development/README.md)
-  * [Theme skeleton](development/theme-skeleton.md)
-  * [Theme assets](development/theme-assets.md)
-  * [theme.html](development/theme-html.md)
-  * [Theme layouts](development/theme-layouts.md)
-  * [Header & footer partials](development/header-footer.md)
-  * [Auth pages](development/auth-pages.md)
-  * [Signin (header login area)](development/signin.md)
-  * [Sitedown page](development/sitedown.md)
-  * [News templates](development/news-templates.md)
-  * [Home layout](development/home-layout.md)
-  * [Theme shortcodes](development/theme-shortcodes.md)
+
+## Theme skeleton
+
+* [Overview](skeleton/README.md)
+  * [theme.xml](skeleton/theme-xml.md)
+  * [theme.html](skeleton/theme-html.md)
+  * [theme.php](skeleton/theme-php.md)
+  * [theme_shortcodes.php](skeleton/theme-shortcodes.md)
+  * [theme_config.php](skeleton/theme-config.md)
+  * [Theme assets](skeleton/theme-assets.md)
+
+## Theme layouts
+
+* [Overview](layouts/README.md)
+  * [Full](layouts/full.md)
+  * [Auth](layouts/auth.md)
+  * [Page](layouts/page.md)
+  * [Sidebar](layouts/sidebar.md)
+  * [Home](layouts/home.md)
+  * [Memberdesk](layouts/memberdesk.md)
+  * [Raw](layouts/raw.md)
+* [Header & footer partials](layouts/header-footer.md)
+
+## Standalone pages
+
+* [Auth pages](standalone/auth-pages.md)
+* [Sitedown page](standalone/sitedown.md)
+
+## Plugins
+
+* [Signin (header login area)](plugins/signin.md)
+* [News](plugins/news.md)
 
 ## Guides
 
