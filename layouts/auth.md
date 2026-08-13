@@ -7,7 +7,12 @@ Formerly named `splash`.
 
 ```html
 <div class="container container-tight py-4">
-	<div class="text-center mb-4"> {SITELOGO: h=40} + {SITENAME} brand block </div>
+	<div class="text-center mb-4">
+		<a href="{SITEURL}" class="navbar-brand navbar-brand-autodark d-inline-flex flex-column align-items-center" aria-label="{SITENAME}">
+			{SITELOGO: h=40}
+			<span class="mt-2">{SITENAME}</span>
+		</a>
+	</div>
 	{---}
 </div>
 ```

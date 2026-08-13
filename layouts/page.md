@@ -1,14 +1,28 @@
 # Page layout
 
-The **default** layout (`custompages: page faq`): boxed page with the Tabler
+The layout for standalone pages (`custompages: page faq`): boxed page with the Tabler
 page header filled by the magic shortcodes.
+
+The .page wrapper and both navbars come from theme.html + headers/header_default.html; this file starts at .page-wrapper.
+The page header is filled by the magic shortcodes {---CAPTION---} and {---BREADCRUMB---} - they are populated from the MAIN render, which is  what {SETSTYLE=default} designates. 
 
 ## Structure
 
 ```html
 <div class="page-wrapper">
 	<div class="page-header d-print-none" aria-label="Page header">
-		... <h2 class="page-title">{---CAPTION---}</h2> ... {---BREADCRUMB---} ...
+		<div class="container-xl">
+			<div class="row g-2 align-items-center">
+				<div class="col">
+					<h2 class="page-title">{---CAPTION---}</h2>
+				</div>
+				<div class="col-auto ms-auto d-print-none">
+					<div class="d-flex">
+						{---BREADCRUMB---}
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="page-body">
 		<div class="container-xl">
@@ -16,7 +30,6 @@ page header filled by the magic shortcodes.
 			{---}
 		</div>
 	</div>
-	<footer class="footer footer-transparent d-print-none"> ... </footer>
 </div>
 ```
 

@@ -6,19 +6,19 @@
 
 * [How this theme was developed](development/README.md)
 
-## Theme skeleton
+## Theme structure
 
 * [Overview](skeleton/README.md)
-  * [theme.xml](skeleton/theme-xml.md)
-  * [theme.html](skeleton/theme-html.md)
-  * [theme.php](skeleton/theme-php.md)
-  * [theme_shortcodes.php](skeleton/theme-shortcodes.md)
-  * [theme_config.php](skeleton/theme-config.md)
-  * [Theme assets](skeleton/theme-assets.md)
+* [theme.xml](skeleton/theme-xml.md)
+* [theme.html](skeleton/theme-html.md)
+* [theme.php](skeleton/theme-php.md)
+* [theme_shortcodes.php](skeleton/theme-shortcodes.md)
+* [theme_config.php](skeleton/theme-config.md)
+* [theme assets](skeleton/theme-assets.md)
 
 ## Theme layouts
 
-* [Overview](layouts/README.md)
+* [Available layouts](layouts/README.md)
   * [Full](layouts/full.md)
   * [Auth](layouts/auth.md)
   * [Page](layouts/page.md)
@@ -35,7 +35,7 @@
 
 ## Plugins
 
-* [Signin (header login area)](plugins/signin.md)
+* [Signin](plugins/signin.md)
 * [News](plugins/news.md)
 
 ## Guides

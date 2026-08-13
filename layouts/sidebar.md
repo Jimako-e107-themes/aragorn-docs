@@ -7,7 +7,20 @@ Magic page header + content with a menu column on the **right**
 
 ```html
 <div class="page-wrapper">
-	<div class="page-header ..."> {---CAPTION---} / {---BREADCRUMB---} </div>
+	<div class="page-header d-print-none" aria-label="Page header">
+		<div class="container-xl">
+			<div class="row g-2 align-items-center">
+				<div class="col">
+					<h2 class="page-title">{---CAPTION---}</h2>
+				</div>
+				<div class="col-auto ms-auto d-print-none">
+					<div class="d-flex">
+						{---BREADCRUMB---}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="page-body">
 		<div class="container-xl">
 			<div class="row g-4">
@@ -24,12 +37,10 @@ Magic page header + content with a menu column on the **right**
 			</div>
 		</div>
 	</div>
-	<footer class="footer footer-transparent d-print-none"> ... </footer>
 </div>
 ```
 
 * Content uses `{SETSTYLE=default}` (main render → feeds the page header);
   the sidebar switches to `{SETSTYLE=card}` for its menus.
-* The `sticky-top` wrapper keeps the menu column visible while scrolling
-  (job-listing detail).
+* The `sticky-top` wrapper keeps the menu column visible while scrolling.
 * Menu area **100** — assign menus in the Menu Manager.
