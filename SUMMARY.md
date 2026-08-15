@@ -37,9 +37,12 @@
 
 * [Signin](plugins/signin.md)
 * [News](plugins/news.md)
+  * [News checklist](plugins/news-checklist.md)
 
 ## Guides
 
 * [Fixing broken action icons in the News view](guides/fixing-news-action-icons.md)
 * [Why the theme defines custom auth shortcodes](guides/custom-auth-shortcodes.md)
 * [Header & footer partials with working menu areas](guides/header-footer-partials.md)
+* [Fixing invisible badge text (bg-* vs. text-bg-*)](guides/fixing-badge-text-color.md)
+* [News: default caption and clickable category badge](guides/news-caption-and-category-link.md)

@@ -31,8 +31,9 @@ Progress legend: `██████████` = done, checkbox ticked only a
   rendering path solved.
 * [x] [Sitedown page](../standalone/sitedown.md) — `██████████` **100%**
   Maintenance page on the Tabler `empty` component, brand social buttons.
-* [ ] [News templates](../plugins/news.md) — `██████░░░░` **60%**
-  Main + view templates done; grid, menu and carousel pending.
+* [x] [News templates](../plugins/news.md) — `████████░░` **90%**
+  Main, view, grid and menu templates done with Tabler gallery/job-listing
+  patterns; a badge text-contrast bug was found and fixed along the way.
 * [ ] [Home layout](../layouts/home.md) — `█░░░░░░░░░` **10%**
   Front page on `tabler-marketing.css`, just started.
 
