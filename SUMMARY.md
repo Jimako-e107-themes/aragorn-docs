@@ -37,7 +37,11 @@
 
 * [Signin](plugins/signin.md)
 * [News](plugins/news.md)
-  * [News checklist](plugins/news-checklist.md)
+  * [News templates](plugins/news-templates.md)
+  * [News grid](plugins/news-grid.md)
+  * [news.php as front page](plugins/news-php.md)
+  * [News shortcodes](plugins/news-shortcodes.md)
+  * [Setup checklist](plugins/news-checklist.md)
 
 ## Guides
 
