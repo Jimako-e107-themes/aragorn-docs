@@ -42,6 +42,10 @@
   * [news.php as front page](plugins/news-php.md)
   * [News shortcodes](plugins/news-shortcodes.md)
   * [Setup checklist](plugins/news-checklist.md)
+* [Featurebox](plugins/featurebox.md)
+  * [Features section](plugins/featurebox-features.md)
+  * [Hero section](plugins/featurebox-hero.md)
+
 
 ## Guides
 
