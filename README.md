@@ -38,6 +38,8 @@ Progress legend: `██████████` = done, checkbox ticked only a
   (list/default display switch).
 * [ ] [Home layout](../layouts/home.md) — `█░░░░░░░░░` **10%**
   Front page on `tabler-marketing.css`, just started.
+* [ ] [Search page](standalone/search.md) — `████████░░` **85%** Form rebuilt on Bootstrap 5 (core ships no BS5 template), result rows
+styled via CSS, `card_header` tablestyle. Pagination remaining. 
 
 ## Theme shortcodes
 

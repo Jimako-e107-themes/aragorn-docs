@@ -31,6 +31,7 @@
 ## Standalone pages
 
 * [Auth pages](standalone/auth-pages.md)
+* [Search page](standalone/search.md)
 * [Sitedown page](standalone/sitedown.md)
 
 ## Plugins
