@@ -28,6 +28,12 @@
   * [Raw](layouts/raw.md)
 * [Header & footer partials](layouts/header-footer.md)
 
+## Branding
+
+* [Branding](branding/README.md)
+  * [Tabler variables](branding/tabler-variables.md)
+  * [Compatibility shims](branding/compat-shims.md)
+
 ## Standalone pages
 
 * [Auth pages](standalone/auth-pages.md)
