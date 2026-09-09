@@ -75,7 +75,7 @@ from core.
 ## Classes met in plugin templates
 
 These are fixed by overriding the plugin's template rather than by a shim — see
-[Plugins](../plugins/README.md). Listed here because the same names keep
+[Plugins](../plugins/news.md). Listed here because the same names keep
 appearing and it is worth knowing what each one became.
 
 | Legacy | Bootstrap 5 | Effect if left |

@@ -19,6 +19,7 @@
 ## Theme layouts
 
 * [Available layouts](layouts/README.md)
+  * [3columns](layouts/3columns.md)
   * [Full](layouts/full.md)
   * [Auth](layouts/auth.md)
   * [Page](layouts/page.md)
@@ -28,11 +29,12 @@
   * [Raw](layouts/raw.md)
 * [Header & footer partials](layouts/header-footer.md)
 
-## Branding
+## Styling
 
-* [Branding](branding/README.md)
-  * [Tabler variables](branding/tabler-variables.md)
-  * [Compatibility shims](branding/compat-shims.md)
+* [Overview](styling/README.md)
+  * [Working with Tabler variables](styling/tabler-variables.md)
+  * [Brand files](styling/brand-files.md)
+  * [Compatibility shims](styling/compat-shims.md)
 
 ## Standalone pages
 
@@ -61,3 +63,4 @@
 * [Header & footer partials with working menu areas](guides/header-footer-partials.md)
 * [Fixing invisible badge text (bg-* vs. text-bg-*)](guides/fixing-badge-text-color.md)
 * [News: default caption and clickable category badge](guides/news-caption-and-category-link.md)
+* [Shared menu areas across layouts](guides/shared-menu-areas.md)

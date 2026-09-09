@@ -38,7 +38,7 @@ The nested case is the one that bites. `header_default.html` puts the
 navigation in a `<header class="main-navbar">` that contains a plain
 `<div class="navbar">`. Colouring `.main-navbar` alone leaves the inner div
 white with dark links, because that div re-declares every navbar variable.
-Hence the doubled selector in both brand files:
+Hence the doubled selector in the brand file:
 
 ```css
 .main-navbar,
@@ -67,7 +67,7 @@ case. Only one, in Tabler, means yours is landing on the wrong element.
 `--tblr-accordion-btn-bg` exists, and nothing consumes it: both
 `.accordion-button` and `.accordion-header` hardcode
 `background-color: transparent`. A coloured accordion header has to set the
-background directly, which is why the panel rules in both brand files are the
+background directly, which is why the panel rules in the brand file are the
 one place that overrides a Tabler class rather than a variable.
 
 ### A default of `inherit`
@@ -90,14 +90,14 @@ That comes *after* the rule reading `--tblr-list-group-bg` (`:4939`) and has
 the same specificity, so the variable never reaches the item — rows take colour
 only because they inherit it from `.list-group`.
 
-Both brand files therefore set the panel background on `.accordion-body` and
-leave the list group transparent, rather than relying on which of the two
+The brand file therefore sets the panel background on `.accordion-body` and
+leaves the list group transparent, rather than relying on which of the two
 Tabler rules wins.
 
 ## Why variables over overrides at all
 
 Every rule that targets a Tabler class is a rule that can break on a Tabler
-upgrade. A variable is a published surface. The brand files use variables
-everywhere they can and name the reason in a comment everywhere they cannot —
+upgrade. A variable is a published surface. The brand file uses variables
+everywhere it can and name the reason in a comment everywhere they cannot —
 that comment is what tells the next reader whether the override is still
 needed.
