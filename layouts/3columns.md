@@ -79,23 +79,75 @@ whole page, header included, by that width — a visible gap down the left edge.
 `style.css` resets the margin and uses `scrollbar-gutter: stable` instead,
 which keeps the anti-jump behaviour without the offset.
 
+## Structure
+
+```html
+
+<div class="container-fluid mt-3">
+	<!-- 5-14-5 of 24, not 3-6-3 of 12: at 3-6-3 the side columns are too wide
+	     and at 2-8-2 too narrow. col24-lg-* are defined in style.css and sit
+	     alongside Bootstrap's own grid, which stays untouched - a col-md-6
+	     inside a nested row here is still half of its parent. -->
+	<div class="row g-3">
+
+		<!-- REGION l - catalogue. offcanvas-lg: a column at lg+, a panel below. -->
+		<div class="col24-lg-5">
+			<div class="offcanvas-lg offcanvas-start col-sticky" tabindex="-1" id="panelLeft">
+				<div class="offcanvas-header d-lg-none">
+					<h2 class="offcanvas-title h4">Preklady</h2>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#panelLeft" aria-label="Zavrieť"></button>
+				</div>
+				<div class="accordion" id="accLeft">
+					{SETSTYLE=accordion-left}
+					{MENUAREA=101}
+				</div>
+			</div>
+		</div>
+
+		<main class="col24-lg-14">
+			{SETSTYLE=default}
+			{---}
+		</main>
+
+		<div class="col24-lg-5">
+			<div class="col-sticky">
+
+				<!-- REGION u - account -->
+				<div class="offcanvas-lg offcanvas-end" tabindex="-1" id="panelUser">
+					<div class="offcanvas-header d-lg-none">
+						<h2 class="offcanvas-title h4">Môj účet</h2>
+						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#panelUser" aria-label="Zavrieť"></button>
+					</div>
+					<div class="accordion" id="accUser">
+						{SETSTYLE=accordion-user}
+						{MENUAREA=102}
+					</div>
+				</div>
+
+				<!-- REGION r - latest -->
+				<div class="offcanvas-lg offcanvas-end mt-lg-3" tabindex="-1" id="panelLatest">
+					<div class="offcanvas-header d-lg-none">
+						<h2 class="offcanvas-title h4">Najnovšie</h2>
+						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#panelLatest" aria-label="Zavrieť"></button>
+					</div>
+					<div class="accordion" id="accLatest">
+						{SETSTYLE=accordion-latest}
+						{MENUAREA=103}
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+```
+
 ## The side panels
 
 Both columns use `offcanvas-lg`: a real column from `lg` up, a drawer below it.
 The drawer is opened from the bottom navigation bar, which is itself
 `d-lg-none`.
-
-```html
-<div class="col24-lg-5">
-  <div class="offcanvas-lg offcanvas-start col-sticky" tabindex="-1" id="panelLeft">
-    <div class="offcanvas-header d-lg-none"> … </div>
-    <div class="accordion" id="accLeft">
-      {SETSTYLE=accordion-left}
-      {MENUAREA=101}
-    </div>
-  </div>
-</div>
-```
 
 Three ids matter and are part of the styling contract:
 `#panelLeft`, `#panelUser`, `#panelLatest` for the drawers, and
