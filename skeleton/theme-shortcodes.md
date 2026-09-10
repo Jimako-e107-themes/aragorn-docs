@@ -1,91 +1,89 @@
-# Theme shortcodes
+# theme_shortcodes.php
 
-Custom shortcodes live in `theme_shortcodes.php` (class extending
-`e_shortcode`). They are available in all theme layouts and templates parsed
-by the full parser.
+Custom shortcodes live in `theme_shortcodes.php`, a class extending
+`e_shortcode`. They are available in all theme layouts and templates parsed by
+the full parser.
 
-{% hint style="danger" %}
-Theme shortcodes do **not** work in the fpw / membersonly template
-`header` / `footer` keys — `simpleParse()` deletes every plain `{WORD}`
-code there before the full parser runs. See
-[Auth pages](../standalone/auth-pages.md) for the workaround (PHP constants +
-`e107::getThemePref()`).
-{% endhint %}
+Each shortcode has its own page. This one holds what applies to all of them.
 
-## Implemented
+## The shortcodes
 
 | Shortcode | Purpose | Status |
 |---|---|---|
+| [`{HEADER}`](shortcodes/header.md) | loads `headers/header_<variant>.html` | done |
+| [`{FOOTER}`](shortcodes/footer.md) | loads `footers/footer_<variant>.html` | done |
+| [`{BODY_CLASS}`](shortcodes/body-class.md) | per-layout `<body>` classes | done |
+| [`{PAGE_CLASS}`](shortcodes/page-class.md) | per-layout classes for the `.page` wrapper | done |
+| [`{THEME_TOGGLE}`](shortcodes/theme-toggle.md) | dark/light switch | done |
+| [`{THEME_MENUAREA}`](shortcodes/theme-menuarea.md) | one layout's menu area, rendered on all of them | done |
+| [`{BOTTOM_NAV}`](shortcodes/bottom-nav.md) | mobile bottom bar, opens the drawers | 85% |
+| [`{TILES}`](shortcodes/tiles.md) | shortcut tiles under the header | 40% |
 | `{ADVANCED_LOGIN_LINK}` | styled link to the login page | done |
 | `{ADVANCED_SIGNUP_LINK}` | styled link to the signup page | done |
 | `{ADVANCED_FPW_BUTTON}` | styled forgot-password button | done |
-| `{BODY_CLASS}` | per-layout `<body>` classes | done |
-| `{PAGE_CLASS}` | per-layout classes for the `.page` wrapper in theme.html | done |
-| `{HEADER}` | loads `headers/header_<variant>.html` partial | done |
-| `{FOOTER}` | loads `footers/footer_<variant>.html` partial | done |
-| `{THEME_TOGGLE}` | dark/light switch, Tabler's two-button snippet | done |
-| `{BOTTOM_NAV}` | mobile bottom bar; opens the offcanvas drawers | done |
-| `{TILES}` | shortcut tiles under the header | done |
-| `{THEME_MENUAREA=n}` | a menu area from one layout, rendered on all of them | done |
+| `{THEME_PREF}` | reads a theme preference into a layout | done |
+| `{SITELOGO}`, `{LOGO}` | site logo, with `type=url` support | done |
 
-Why the three `ADVANCED_*` shortcodes exist instead of the core equivalents
-(link-in-sentence LANs, `user_reg` visibility, inline SVG in the submit
-button) is documented in
-[Why the theme defines custom auth shortcodes](../guides/custom-auth-shortcodes.md).
+Pages for the last five are still to be written.
 
-## `{BOTTOM_NAV}`
-
-The mobile navigation bar, rendered from `theme.html` so it is present on
-every layout that does not suppress it. Items are fixed in `sc_bottom_nav()`:
-a home link plus three triggers that open the offcanvas drawers.
-
-{% hint style="danger" %}
-Every item with a `panel` opens one of `#panelLeft`, `#panelUser`,
-`#panelLatest`. A layout that renders the bar without those panels produces
-`Cannot read properties of undefined (reading 'backdrop')` — Bootstrap's
-`BaseComponent` returns early on a missing target, leaving `_config` undefined
-before `Offcanvas` reads `_config.backdrop`.
-
-The suppression list in `sc_bottom_nav()` and the panel block in the layouts
-are therefore a pair. Adding a layout means updating both, or neither.
-{% endhint %}
-
-The bar is `d-lg-none`, and `style.css` adds bottom padding only on pages that
-actually render it — otherwise every mobile page would get dead space.
-
-## `{THEME_MENUAREA=n}`
-
-Renders a menu area from one chosen layout, whatever layout the current page
-uses, so the drawers are configured once instead of five times.
-
-`{MENUAREA=101}` stays in the layout the menus are assigned on; every other
-layout uses `{THEME_MENUAREA=101}`. The mechanism, its security reasoning and
-its one failure mode are on
-[Shared menu areas](../guides/shared-menu-areas.md).
-
-{% hint style="warning" %}
-Menu Manager finds areas with a regex anchored on `{MENU` or `{MENUAREA`
-(`menumanager_class.php:2547`), so an area addressed this way disappears from
-its layout tab. That is intended — but it means at least one layout must keep
-the plain form, or the menus cannot be assigned at all.
+{% hint style="info" %}
+A page without a code snippet means the shortcode is still moving — the item
+list, the suppression rules or the markup are unfinished, and a snippet would
+go stale before anyone read it. The page says so explicitly and lists what is
+open.
 {% endhint %}
 
 ## Reading `THEME_LAYOUT`
 
 {% hint style="danger" %}
-In every shortcode that branches on the layout — `{HEADER}`, `{FOOTER}`,
-`{BOTTOM_NAV}`, `{TILES}`, `{BODY_CLASS}`, `{PAGE_CLASS}` — read
-`THEME_LAYOUT` via `defset()` **at call time, inside the method**. The batch
-is a singleton created on the first `getScBatch('theme')` call anywhere, and a
-plugin or menu can instantiate it before `e_theme::initThemeLayout()` has
-defined the constant. Caching it in the constructor works only sometimes,
-which is worse than not working at all.
+In every shortcode that branches on the layout, read `THEME_LAYOUT` via
+`defset()` **at call time, inside the method**.
+
+The batch is a singleton created on the first `getScBatch('theme')` call
+anywhere on the page, and a plugin or a menu can instantiate it *before*
+`e_theme::initThemeLayout()` has defined the constant. Caching it in the
+constructor works only sometimes, which is worse than never working — it fails
+on some pages and not others, with nothing to distinguish them.
 {% endhint %}
 
-## Planned
+Affected: `{HEADER}`, `{FOOTER}`, `{BODY_CLASS}`, `{PAGE_CLASS}`,
+`{BOTTOM_NAV}`, `{TILES}`.
 
-The list below is a snapshot — more shortcodes will be added as the home
-and memberdesk layouts develop.
+## Paths inside a shortcode
+
+{% hint style="danger" %}
+Use `__DIR__`, not `THEME`, for a file path inside the theme.
+
+In an admin context — Menu Manager's preview is the one that will catch you —
+`THEME` points at the **admin** theme. `__DIR__` is the directory of
+`theme_shortcodes.php` and is right in every context.
+{% endhint %}
+
+## Where theme shortcodes do not work
+
+{% hint style="danger" %}
+Theme shortcodes do **not** work in the fpw / membersonly template `header` and
+`footer` keys. `simpleParse()` deletes every plain `{WORD}` code there before
+the full parser runs.
+
+The workaround — PHP constants plus `e107::getThemePref()` — is on
+[Auth pages](../standalone/auth-pages.md).
+{% endhint %}
+
+## Two shortcodes that are not the theme's
+
+Worth knowing, because they sit next to the theme's own and look alike.
+
+`{LAYOUT_ID}` is **core**: it expands to `"layout-" + name2id(THEME_LAYOUT)`
+(`header_default.php:801`) and gives every layout a body class with no theme
+code involved. Prefer it over `{BODY_CLASS}` whenever the rule is simply "on
+this layout" — see [{BODY_CLASS}](shortcodes/body-class.md).
+
+`{MENU=101}` with a numeric parm is the same as `{MENUAREA=101}` — both call
+`renderArea()` (`e107_core/shortcodes/single/menu.php`). The two spellings are
+interchangeable, which matters when reading a layout that mixes them.
+
+## Planned
 
 * `{THEME_AUTH_BGIMAGE}` — auth splash image from theme preferences
   (layout-side counterpart to the PHP pref read used in the fpw template).

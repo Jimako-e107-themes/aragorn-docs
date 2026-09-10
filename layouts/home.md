@@ -19,6 +19,12 @@ dashboard chrome.
 
 ## Structure
 
+{% hint style="info" %}
+This layout is unfinished, so the snippet below is a snapshot rather than a
+reference — the section markup and the featurebox categories will change.
+Check the file before relying on it.
+{% endhint %}
+
 ```html
 <!-- Mobile drawers for the bottom navigation. This layout has no side columns,
      so the panels exist as drawers only. Block is identical in every layout
