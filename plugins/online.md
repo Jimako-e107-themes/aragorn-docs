@@ -54,12 +54,12 @@ no subdirectory — and requires that file instead if it exists. A leftover ther
 silently wins over `templates/online/`.
 {% endhint %}
 
-{% hint style="warning" %}
-**`$ONLINE_MENU_WRAPPER` is a separate variable.** `_getTemplate()` reads only
-`$ONLINE_MENU_TEMPLATE`. Whether the wrappers defined in the theme file are
-read at all depends on how `online_menu.php` obtains them — **unverified**. If
-the item markup looks right but the labels and badges around it still carry
-`pull-right`, this is why.
+{% hint style="info" %}
+**`$ONLINE_MENU_WRAPPER` is a separate variable, and it is read.**
+`_getTemplate()` derives the wrapper variable name from the template id
+(`e107_class.php:4081`) and captures it alongside the template
+(`:4115`), so the wrappers defined in the theme file take effect together with
+the item markup.
 {% endhint %}
 
 The general mechanics are in
