@@ -21,7 +21,10 @@ Two buttons, not one. Tabler shows whichever matches the current scheme through
 the markup and no positioning is needed — a `position: fixed` here would pull
 the control out of the header.
 
-The buttons carry `data-bs-theme-value`; the handler is `js/theme-toggle.js`.
+The markup follows Tabler's `layout-horizontal.html`, with one change: Tabler
+uses `<a href="?theme=dark">`, which navigates and leaves a query string
+behind. The buttons here carry `data-bs-theme-value` instead, read by
+`js/theme-toggle.js` — no navigation, no query string.
 
 {% hint style="warning" %}
 The click handler and the pre-paint script `js/tabler-theme.min.js` must use
@@ -39,12 +42,6 @@ the next page load.
 	// Dark/light mode toggle, placed in header_3columns.html inside a
 	// .nav-item. Not available on layouts where sc_header() suppresses
 	// {HEADER} (auth, memberdesk) - acceptable, those are transient pages.
-	//
-	// Markup follows Tabler's layout-horizontal.html: two buttons using
-	// .hide-theme-dark / .hide-theme-light, each visible only in the OTHER
-	// mode, so the icon swap needs no custom CSS. Tabler's own markup uses
-	// <a href="?theme=dark">; replaced here with data-bs-theme-value, read
-	// by js/theme-toggle.js - no navigation, no query string.
 	function sc_theme_toggle($parm = null)
 	{
 		$labelDark  = deftrue('LAN_THEME_TOGGLE_DARK', 'Enable dark mode');

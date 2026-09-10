@@ -31,19 +31,7 @@ failure mode are on
 ## Code
 
 ```php
-	// {THEME_MENUAREA=101}
-	// Renders a menu area from the layout named in ARAGORN_DRAWER_LAYOUT,
-	// whatever layout the current page uses.
-	//
-	// Core has no equivalent: e_menu loads menus for THEME_LAYOUT only
-	// (menu_class.php:407) and renderArea() takes no layout parameter, so the
-	// same menu has to be placed again in Menu Manager for every layout. The
-	// mobile drawers are identical everywhere, which makes that busywork and a
-	// source of drift.
-	//
-	// Areas addressed this way disappear from Menu Manager on the layouts that
-	// use this shortcode, which is intended: the drawers are configured once,
-	// on the source layout, and mirrored everywhere else.
+	// {THEME_MENUAREA=101} - see docs: {THEME_MENUAREA}.
 	function sc_theme_menuarea($parm = null)
 	{
 		$area = (int) $parm;
@@ -71,21 +59,13 @@ if(!class_exists('aragorn_menu', false))
 	class aragorn_menu extends e_menu
 	{
 		/**
-		 * Load the source layout's menus into eMenuActive, applying the same
-		 * visibility rules core applies in init().
-		 *
 		 * @return void
 		 */
 		public function initFromSourceLayout()
 		{
-			// Defined in theme.php, which is always loaded before this file.
 			$layout = defset('ARAGORN_DRAWER_LAYOUT', '3columns');
 
-			// e_menu::getDataLegacy() stores the DEFAULT layout's menus with an
-			// empty menu_layout rather than the layout's own name, so the name
-			// has to be translated before it can be matched against the column.
-			// Querying for the literal '3columns' finds nothing while 3columns
-			// is the default.
+			// The default layout is stored as an empty menu_layout.
 			if($layout === e107::getPref('sitetheme_deflayout'))
 			{
 				$layout = '';
@@ -97,11 +77,7 @@ if(!class_exists('aragorn_menu', false))
 				"menu_location > 0 AND menu_layout = '" . $layout . "' ORDER BY menu_location, menu_order",
 				true);
 
-			// The source layout is no longer the default one, so its menus are
-			// not stored under its name any more. Fall back to whatever IS the
-			// default: those are the rows the admin has been editing, so the
-			// drawers keep working. theme::init() warns admins about the
-			// mismatch, so this stays a soft landing rather than a silent one.
+			// Fallback for a changed default layout; theme::init() warns about it.
 			if(empty($rows) && $layout !== '')
 			{
 				$rows = e107::getDb()->retrieve('menus', '*',
@@ -122,15 +98,25 @@ if(!class_exists('aragorn_menu', false))
 				}
 			}
 
-			// e107::getRender()->eMenuTotal is deliberately left alone: it
-			// describes the CURRENT layout's areas, and overwriting it here
-			// would feed wrong counts to any menu or template that reads it.
+			// eMenuTotal is left alone on purpose - it describes the CURRENT layout.
 		}
 	}
 }
 ```
 
 ## Notes
+
+**`eMenuTotal` is left alone.** `e_menu::init()` sets
+`e107::getRender()->eMenuTotal` while loading, and a theme or menu can read it
+to know how many menus an area holds. `initFromSourceLayout()` deliberately
+does not touch it: it describes the **current** layout's areas, and
+overwriting it with the source layout's counts would feed wrong numbers to
+everything else on the page.
+
+**The layout name is escaped.** It reaches SQL, so it goes through `toDB()`.
+Today it comes from a constant and the risk is nil — but if the source layout
+ever becomes a theme preference, the escaping is already in place rather than
+something to remember.
 
 {% hint style="warning" %}
 Areas addressed this way disappear from Menu Manager on those layouts. Menu

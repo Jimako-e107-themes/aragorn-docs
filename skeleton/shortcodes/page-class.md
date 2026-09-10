@@ -17,14 +17,14 @@ has to sit on `.page` itself comes from here.
 The case that made it necessary is `auth`, which needs Tabler's `page-center`
 to vertically centre the login card.
 
+The wrapper itself lives in `theme.html` rather than in each layout because the
+`{---HEADER---}` partial has to render **inside** `.page` — Tabler's structure
+is `.page > header > .page-wrapper`.
+
 ## Code
 
 ```php
-	// {PAGE_CLASS}
-	// Per-layout classes for the .page wrapper in theme.html. The wrapper
-	// itself lives in theme.html because the {---HEADER---} partial must
-	// render INSIDE .page (Tabler structure: .page > header > page-wrapper).
-	// Same rule as {BODY_CLASS}: read THEME_LAYOUT at call time via defset().
+	// {PAGE_CLASS} - see docs: {PAGE_CLASS}.
 	function sc_page_class($parm = null)
 	{
 		switch(defset('THEME_LAYOUT'))

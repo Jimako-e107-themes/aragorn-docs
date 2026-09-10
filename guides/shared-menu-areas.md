@@ -42,22 +42,11 @@ assigned at all.
 layout's menus into `eMenuActive`, then hands them to the inherited
 `renderArea()`.
 
-```php
-class aragorn_menu extends e_menu
-{
-	public function initFromSourceLayout()
-	{
-		$layout = defset('ARAGORN_DRAWER_LAYOUT', '3columns');
-
-		if($layout === e107::getPref('sitetheme_deflayout')) { $layout = ''; }
-
-		$rows = e107::getDb()->retrieve('menus', '*',
-			"menu_location > 0 AND menu_layout = '" . e107::getParser()->toDB($layout) . "'
-			 ORDER BY menu_location, menu_order", true);
-		…
-	}
-}
-```
+`aragorn_menu` in `theme_shortcodes.php` extends `e_menu` and loads the source
+layout's menus into `eMenuActive`, then hands them to the inherited
+`renderArea()`. The full class is on
+[{THEME_MENUAREA}](../skeleton/shortcodes/theme-menuarea.md); what matters here
+is why it is built that way.
 
 Two details carry the weight.
 

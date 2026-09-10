@@ -24,6 +24,12 @@ partial. See
 | `auth`, `memberdesk`, `raw`, `error` | none |
 | everything else | `headers/header_3columns.html` |
 
+`auth` and `memberdesk` get nothing at all, for different reasons. On `auth`
+the partial would render inside `.page.page-center`, whose flex centering would
+break it — and Tabler auth pages carry no navbar anyway, so the brand block
+lives in `auth_layout.html` instead. On `memberdesk` the vertical sidebar
+replaces the horizontal header.
+
 `header_default.html` is not the default despite the name — the `default:`
 branch returns the `_3columns` variant. It is the two-row variant used by
 `home`. See [Header & footer partials](../../layouts/header-footer.md).
@@ -31,12 +37,7 @@ branch returns the `_3columns` variant. It is the two-row variant used by
 ## Code
 
 ```php
-	// {HEADER}
-	// Loads headers/header_<variant>.html. Core merges the output into the
-	// layout at {---HEADER---} during e_theme::loadLayout(), BEFORE the
-	// layout is parsed and before the Menu Manager scans it.
-	// The switch is prepared for per-layout headers (e.g. header_home.html);
-	// for now every layout uses the default.
+	// {HEADER} - see docs: {HEADER}.
 	function sc_header()
 	{
 		switch(defset('THEME_LAYOUT'))
@@ -44,10 +45,6 @@ branch returns the `_3columns` variant. It is the two-row variant used by
 			case 'error':
 				return '';
 
-			// Auth pages: the partial would render inside .page.page-center
-			// (flex centering) and break the layout; Tabler auth pages carry
-			// no navbar - the brand block lives in auth_layout.html instead.
-			// Memberdesk: the vertical sidebar replaces the horizontal header.
 			case 'auth':
 			case 'memberdesk':
 				return '';

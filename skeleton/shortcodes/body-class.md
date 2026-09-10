@@ -39,11 +39,7 @@ Prefer `{LAYOUT_ID}` when the rule is simply "on this layout". Reach for
 	//   <body class="{LAYOUT_ID} {BODY_CLASS}" {BODY_ONLOAD}>
 	//
 	// IMPORTANT: THEME_LAYOUT must be read HERE via defset(), at parse time.
-	// Never cache it in __construct(): this shortcode batch is a singleton
-	// created on the FIRST getScBatch('theme') call anywhere - a plugin or
-	// menu can instantiate it before e_theme::initThemeLayout() has defined
-	// the constant, which makes constructor caching unreliable. Shortcode
-	// methods run during template parsing, which is always after theme init.
+	// defset() at call time, never cached in __construct(). See docs: theme_shortcodes.php.
 	function sc_body_class($parm = null)
 	{
 		$classes = array();
@@ -55,15 +51,16 @@ Prefer `{LAYOUT_ID}` when the rule is simply "on this layout". Reach for
 				$classes[] = 'body-gradient';
 				break;
 
-			// Add further per-layout body classes here as needed, e.g.:
-			// case 'memberdesk':
-			//	$classes[] = '...';
-			//	break;
 		}
 
 		return implode(' ', $classes);
 	}
 ```
+
+## Adding a layout
+
+Add a `case` to the switch. Only `home` has classes today — `body-marketing`
+and `body-gradient`, both from `tabler-marketing.css`.
 
 ## Notes
 
