@@ -55,6 +55,6 @@ common reason before you start bisecting selectors.
 | Layout system | e107 HTML layouts (`theme.html` + `layouts/`) |
 | Default layout | `3columns` — catalogue, content, account |
 | jQuery | loaded by e107 core itself (always present); head vs. footer position is an e107 config setting. The theme's own code does not use it |
-| Icons | Tabler icon webfont, served from the theme; core FontAwesome 6 for legacy shortcode output |
+| Icons | Tabler icon webfont, served from the theme; some inline SVGs in `{THEME_TOGGLE}`, taken from Tabler's own snippet; core FontAwesome 6 for legacy shortcode output |
 | Palette | one brand file per site, swapped in `theme.php :: css()` |
 | License note | Tabler is MIT licensed |
