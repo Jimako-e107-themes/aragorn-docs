@@ -54,6 +54,8 @@
 * [Featurebox](plugins/featurebox.md)
   * [Features section](plugins/featurebox-features.md)
   * [Hero section](plugins/featurebox-hero.md)
+* [Online](plugins/online.md)
+* [Login menu](plugins/login-menu.md)
 
 
 ## Guides
@@ -64,3 +66,4 @@
 * [Fixing invisible badge text (bg-* vs. text-bg-*)](guides/fixing-badge-text-color.md)
 * [News: default caption and clickable category badge](guides/news-caption-and-category-link.md)
 * [Shared menu areas across layouts](guides/shared-menu-areas.md)
+* [Overriding a plugin's menu template from a theme](guides/overriding-plugin-templates.md)
